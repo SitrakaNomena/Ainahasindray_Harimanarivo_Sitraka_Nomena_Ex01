@@ -1,0 +1,47 @@
+Fonction generer_table_verite(fonction_logique):
+    table_verite = []
+    pour chaque combinaison binaire de variables dans fonction_logique:
+        resultat = evaluer(fonction_logique, combinaison)
+        ajouter (combinaison, resultat) à table_verite
+    retourner table_verite
+
+Fonction generer_premiere_forme_canonique(table_verite):
+    premier_forme_canonique = []
+    pour chaque ligne dans table_verite où le résultat est vrai:
+        terme = generer_terme_canonique(ligne[0])
+        ajouter terme à premier_forme_canonique
+    retourner premier_forme_canonique
+
+Fonction generer_deuxieme_forme_canonique(table_verite):
+    deuxieme_forme_canonique = []
+    pour chaque ligne dans table_verite où le résultat est faux:
+        terme = generer_terme_canonique_inverse(ligne[0])
+        ajouter terme à deuxieme_forme_canonique
+    retourner deuxieme_forme_canonique
+
+Fonction generer_terme_canonique(variables):
+    terme = ""
+    pour chaque variable, valeur dans variables:
+        si valeur est vrai:
+            ajouter variable à terme
+        sinon:
+            ajouter variable complémentée à terme
+    retourner terme
+
+Fonction generer_terme_canonique_inverse(variables):
+    terme = ""
+    pour chaque variable, valeur dans variables:
+        si valeur est faux:
+            ajouter variable à terme
+        sinon:
+            ajouter variable complémentée à terme
+    retourner terme
+
+fonction_logique = saisir_fonction_logique()
+table_verite = generer_table_verite(fonction_logique)
+premiere_forme_canonique = generer_premiere_forme_canonique(table_verite)
+deuxieme_forme_canonique = generer_deuxieme_forme_canonique(table_verite)
+afficher(table_verite)
+afficher(premiere_forme_canonique)
+afficher(deuxieme_forme_canonique)
+Appuyez sur un élément pour le coller dans le champ de texte.
